@@ -1,0 +1,13 @@
+python dist_skew_main.py --model=moderate-cnn \
+--dataset=cifar10 \
+--lr=0.01 \
+--retrain_lr=0.01 \
+--batch-size=64 \
+--epochs=10 \
+--retrain_epochs=20 \
+--n_nets=2 \
+--partition=homo \
+--comm_type=fedma \
+--comm_round=10 \
+--retrain=True \
+--rematching=True
