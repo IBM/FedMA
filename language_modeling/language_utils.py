@@ -4,6 +4,8 @@
 """Utils for language models."""
 
 import re
+import numpy as np
+import torch
 
 
 # ------------------------

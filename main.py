@@ -773,8 +773,8 @@ def local_retrain_fedavg(local_datasets, weights, args, device="cpu"):
     train_dl_local = local_datasets[0]
     test_dl_local = local_datasets[1]
 
-    optimizer_fine_tune = optim.Adam(filter(lambda p: p.requires_grad, matched_cnn.parameters()), lr=0.001, weight_decay=0.0001, amsgrad=True)
-    
+    #optimizer_fine_tune = optim.Adam(filter(lambda p: p.requires_grad, matched_cnn.parameters()), lr=0.001, weight_decay=0.0001, amsgrad=True)
+    optimizer_fine_tune = optim.SGD(filter(lambda p: p.requires_grad, matched_cnn.parameters()), lr=args.retrain_lr, momentum=0.9, weight_decay=0.0001)    
     criterion_fine_tune = nn.CrossEntropyLoss().to(device)
 
     logger.info('n_training: %d' % len(train_dl_local))
@@ -887,8 +887,8 @@ def local_retrain_fedprox(local_datasets, weights, mu, args, device="cpu"):
     train_dl_local = local_datasets[0]
     test_dl_local = local_datasets[1]
 
-    optimizer_fine_tune = optim.Adam(filter(lambda p: p.requires_grad, matched_cnn.parameters()), lr=0.001, weight_decay=0.0001, amsgrad=True)
-    
+    #optimizer_fine_tune = optim.Adam(filter(lambda p: p.requires_grad, matched_cnn.parameters()), lr=0.001, weight_decay=0.0001, amsgrad=True)
+    optimizer_fine_tune = optim.SGD(filter(lambda p: p.requires_grad, matched_cnn.parameters()), lr=args.retrain_lr, momentum=0.9, weight_decay=0.0001)
     criterion_fine_tune = nn.CrossEntropyLoss().to(device)
 
     logger.info('n_training: {}'.format(len(train_dl_local)))
@@ -1506,7 +1506,8 @@ def fedma_comm(batch_weights, model_meta_data, layer_type, net_dataidx_map,
                                    train_dl_global,
                                    test_dl_global,
                                    n_classes,
-                                   args)
+                                   device=device,
+                                   args=args)
         batch_weights = [copy.deepcopy(hungarian_weights) for _ in range(args.n_nets)]
         del hungarian_weights
         del retrained_nets
@@ -1607,7 +1608,8 @@ if __name__ == "__main__":
                                train_dl_global,
                                test_dl_global,
                                n_classes,
-                               args)
+                               device=device,
+                               args=args)
 
     _ = compute_model_averaging_accuracy(models, 
                                 averaged_weights, 

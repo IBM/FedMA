@@ -10,5 +10,4 @@ python main.py --model=moderate-cnn \
 --comm_type=fedma \
 --comm_round=10 \
 --oneshot_matching= \
---retrain= \
---rematching=
+--retrain= 
