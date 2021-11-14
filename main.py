@@ -1288,7 +1288,7 @@ def BBP_MAP(nets_list, model_meta_data, layer_type, net_dataidx_map,
 
         type_of_this_layer = layer_type[2 * layer_index - 2]
         type_of_prev_layer = layer_type[2 * layer_index - 2 - 2]
-        first_fc_identifier = (('fc' in type_of_this_layer or 'classifier' in type_of_this_layer) and ('conv' in type_of_prev_layer or 'features' in type_of_this_layer))
+        first_fc_identifier = (('fc' in type_of_this_layer or 'classifier' in type_of_this_layer) and ('conv' in type_of_prev_layer or 'features' in type_of_prev_layer))
         
         if first_fc_identifier:
             first_fc_index = layer_index
