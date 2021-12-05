@@ -1,6 +1,8 @@
 ## Federated Learning with Matched Averaging
 This is the code accompanying the ICLR 2020 paper "Federated Learning with Matched Averaging " Paper link: [https://openreview.net/forum?id=BkluqlSFDS]
 
+![Alt](https://repobeats.axiom.co/api/embed/705163eb0ad960618a2f6fedbb1947992ba5a212.svg "Repobeats analytics image")
+
 ### Overview
 ---
 FedMA algorithm is designed for federated learning of modern neural network architectures e.g. convolutional neural networks (CNNs) and LSTMs. FedMA constructs the shared global model in a layer-wise manner by matching and averaging hidden elements (i.e. channels for convolution layers; hidden states for LSTM; neurons for fully connected layers) with similar feature extraction signatures.
